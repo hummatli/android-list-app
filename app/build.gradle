@@ -1,0 +1,104 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.firebase.firebase-perf'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.mobline.marleyspoon"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode System.getenv("CIRCLE_BUILD_NUM") ? System.getenv("CIRCLE_BUILD_NUM").toInteger() + 1 : 1
+        versionName "v0.0.1"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix
+            versionNameSuffix '-debug'
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
+        }
+        debugMini {
+            initWith debug
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            matchingFallbacks = ['debug']
+        }
+    }
+
+    flavorDimensions "AUDIENCE"
+
+    productFlavors {
+        dev {
+            applicationId defaultConfig.applicationId
+            versionName defaultConfig.versionName + "-dev"
+            buildConfigField 'String', 'API_URL', '"https://api.shrtco.de"'
+            buildConfigField 'String', 'API_SPACE_ID', '"kk2bw5ojx476"'
+            buildConfigField 'String', 'API_ENVIRONMENT_ID', '"master"'
+            buildConfigField 'String', 'API_ACCESS_TOKEN', '"7ac531648a1b5e1dab6c18b0979f822a5aad0fe5f1109829b8a197eb2be4b84c"'
+            buildConfigField 'String', 'FILE_STORAGE_URL', '""'
+        }
+
+        prod {
+            applicationId defaultConfig.applicationId
+            versionName defaultConfig.versionName
+            buildConfigField 'String', 'API_URL', '"https://api.shrtco.de"'
+            buildConfigField 'String', 'API_SPACE_ID', '"kk2bw5ojx476"'
+            buildConfigField 'String', 'API_ENVIRONMENT_ID', '"master"'
+            buildConfigField 'String', 'API_ACCESS_TOKEN', '"7ac531648a1b5e1dab6c18b0979f822a5aad0fe5f1109829b8a197eb2be4b84c"'
+            buildConfigField 'String', 'FILE_STORAGE_URL', '""'
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation project(":data")
+    implementation project(":domain")
+    implementation project(":presentation")
+
+    implementation platform('com.google.firebase:firebase-bom:26.1.0')
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-perf-ktx'
+
+    //DI
+    implementation "org.koin:koin-android:${koinVersion}"
+    implementation "org.koin:koin-androidx-viewmodel:${koinVersion}"
+
+    // Logger
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Test
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:3.5.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}

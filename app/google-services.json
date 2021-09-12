@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "335899121151",
+    "project_id": "test-e81f4",
+    "storage_bucket": "test-e81f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335899121151:android:fcea237cb02cc41dde43ca",
+        "android_client_info": {
+          "package_name": "com.mobline.marleyspoon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335899121151-2vuhd4pemcam2gtdnnnforikgp9qo4t6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAYyg4UN1IhN0jz101cGmJ8szb4c4w21I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335899121151-2vuhd4pemcam2gtdnnnforikgp9qo4t6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
