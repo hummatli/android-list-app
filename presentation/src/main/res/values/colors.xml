@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3B3054</color>
+    <color name="colorPrimaryDark">#232127</color>
+    <color name="colorAccent">#F46262</color>
+
+    <!-- Primary -->
+    <color name="cyan">#2ACFCF</color>
+    <color name="dark_violet">#3B3054</color>
+
+    <!-- Secondary -->
+    <color name="red">#F46262</color>
+
+    <!-- Neutral -->
+    <color name="gray_10">#F4F5F7</color>
+    <color name="gray_50">#E8E8E9</color>
+    <color name="light_gray">#BFBFBF</color>
+    <color name="gray">#9E9AA7</color>
+    <color name="grayish_violet">#35323E</color>
+    <color name="very_dark_violet">#232127</color>
+    <color name="transparent">#00000000</color>
+    <color name="ripple_white">#4dffffff</color>
+    <color name="cyan_disabled">#59D0D0</color>
+
+
+    <!-- Background Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="off_white">#F0F1F6</color>
+
+</resources>
