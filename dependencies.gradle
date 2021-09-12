@@ -1,0 +1,6 @@
+ext {
+    androidMinSdk = 21
+    androidCompileSdk = 30
+    androidTargetSdk = 30
+    androidBuildTools = '30.0.2'
+}
