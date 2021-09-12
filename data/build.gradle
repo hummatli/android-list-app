@@ -1,0 +1,95 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlinx-serialization'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
+}
+
+dependencies {
+
+    implementation project(":domain")
+
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.annotation:annotation:1.2.0'
+
+    //DI
+    implementation "org.koin:koin-android:${koinVersion}"
+    implementation "org.koin:koin-androidx-viewmodel:${koinVersion}"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
+
+    // Json serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
+
+    // Net client
+    implementation "com.squareup.okhttp3:okhttp:4.9.0"
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
+    // persistent storage
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+
+    // Logger
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // analytics
+    implementation platform('com.google.firebase:firebase-bom:26.1.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // API
+    implementation 'com.contentful.java:java-sdk:10.4.0'
+
+    //Unit tests
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation "io.mockk:mockk:1.10.2"
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1'
+    testImplementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
+
+    //MockWebServer
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.9.0"
+
+    //Android tests
+    androidTestImplementation('androidx.test:runner:1.4.0')
+    androidTestImplementation('androidx.test:rules:1.4.0')
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1'
+}
