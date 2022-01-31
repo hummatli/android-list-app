@@ -1,4 +1,4 @@
-# marley-spoon-android  challenge  
+# android-list-app
 
 #### About
 Sample application for Marley Spoon's challenge. The app uses the API in the Contentful service.
